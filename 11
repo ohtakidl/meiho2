@@ -1,0 +1,229 @@
+
+   ... first 74 lines hidden ...
+    75             <!-- Header -->
+    76             <div class="text-center mb-8">
+    77                 <h1 class="text-4xl md:text-6xl font-bold text-white mb-4 drop-shadow-lg">
+    78                     <i class="fas fa-baseball-ball mr-4"></i>
+    79                     MEIHO SOFTBALL CLUB
+    80                 </h1>
+    81                 <h2 class="text-2xl md:text-3xl font-semibold text-yellow-300 drop-shadow-md">
+    82                     DRINKING PARTY
+    83                 </h2>
+    84             </div>
+    85
+    86             <!-- Event Details -->
+    87             <div class="glass rounded-2xl shadow-2xl p-6 mb-8 max-w-4xl mx-auto">
+    88                 <div class="grid md:grid-cols-2 gap-6">
+    89                     <div class="text-center">
+    90                         <i class="fas fa-calendar-alt text-4xl text-blue-600 mb-4"></i>
+    91                         <h3 class="text-xl font-bold text-gray-800 mb-2">開催日時</h3>
+    92                         <p class="text-2xl font-bold text-red-600">2025年7月23日</p>
+    93                     </div>
+    94                     <div class="text-center">
+    95                         <i class="fas fa-map-marker-alt text-4xl text-red-600 mb-4"></i>
+    96                         <h3 class="text-xl font-bold text-gray-800 mb-2">会場</h3>
+    97                         <p class="text-xl">兵庫県川西市</p>
+    98                         <p class="text-2xl font-bold venue-link" onclick="openMap()">
+    99                             <i class="fas fa-store mr-2"></i>たからや
+   100                         </p>
+   101                         <p class="text-sm text-gray-600 mt-2">
+   102                             <i class="fas fa-mouse-pointer mr-1"></i>クリックで地図を開く
+   103                         </p>
+   104                     </div>
+   105                 </div>
+   106             </div>
+   107
+   108             <!-- Attendance Form -->
+   109             <div class="glass rounded-2xl shadow-2xl p-6 mb-8 max-w-4xl mx-auto">
+   110                 <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">
+   111                     <i class="fas fa-clipboard-check mr-2"></i>出欠票
+   112                 </h3>
+   113
+   114                 <form id="attendanceForm" class="space-y-4">
+   115                     <div>
+   116                         <label class="block text-sm font-medium text-gray-700 mb-2">
+   117                             <i class="fas fa-user mr-2"></i>お名前
+   118                         </label>
+   119                         <input type="text" id="name" required
+   120                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-lg">
+   121                     </div>
+   122
+   123                     <div>
+   124                         <label class="block text-sm font-medium text-gray-700 mb-2">
+   125                             <i class="fas fa-check-circle mr-2"></i>出欠
+   126                         </label>
+   127                         <div class="grid grid-cols-3 gap-2">
+   128                             <label class="flex items-center justify-center p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-green-50 transition-colors">
+   129                                 <input type="radio" name="attendance" value="参加" required class="mr-2">
+   130                                 <i class="fas fa-check text-green-600 mr-2"></i>参加
+   131                             </label>
+   132                             <label class="flex items-center justify-center p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-red-50 transition-colors">
+   133                                 <input type="radio" name="attendance" value="不参加" required class="mr-2">
+   134                                 <i class="fas fa-times text-red-600 mr-2"></i>不参加
+   135                             </label>
+   136                             <label class="flex items-center justify-center p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-yellow-50 transition-colors">
+   137                                 <input type="radio" name="attendance" value="未定" required class="mr-2">
+   138                                 <i class="fas fa-question text-yellow-600 mr-2"></i>未定
+   139                             </label>
+   140                         </div>
+   141                     </div>
+   142
+   143                     <div>
+   144                         <label class="block text-sm font-medium text-gray-700 mb-2">
+   145                             <i class="fas fa-comment mr-2"></i>コメント（任意）
+   146                         </label>
+   147                         <textarea id="comment" rows="3"
+   148                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+   149                                   placeholder="アレルギーやメッセージなどございましたらご記入ください"></textarea>
+   150                     </div>
+   151
+   152                     <button type="submit"
+   153                             class="w-full btn-primary text-white py-4 px-6 rounded-lg font-bold text-lg shadow-lg">
+   154                         <i class="fas fa-paper-plane mr-2"></i>出欠を送信
+   155                     </button>
+   156                 </form>
+   157             </div>
+   158
+   159             <!-- Attendance List -->
+   160             <div class="glass rounded-2xl shadow-2xl p-6 max-w-4xl mx-auto">
+   161                 <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">
+   162                     <i class="fas fa-list mr-2"></i>出欠一覧
+   163                 </h3>
+   164                 <div id="attendanceList" class="space-y-4">
+   165                     <p class="text-center text-gray-500 py-8">
+   166                         <i class="fas fa-info-circle mr-2"></i>まだ回答がありません
+   167                     </p>
+   168                 </div>
+   169             </div>
+   170         </div>
+   171     </div>
+   172
+   173     <script>
+   174         // Google Maps関数
+   175         function openMap() {
+   176             const query = encodeURIComponent('たからや 兵庫県川西市');
+   177             const url = `https://www.google.com/maps/search/${query}`;
+   178             window.open(url, '_blank');
+   179         }
+   180
+   181         // ローカルストレージのキー
+   182         const STORAGE_KEY = 'meiho_softball_attendance';
+   183
+   184         // 出欠データを取得
+   185         function getAttendanceData() {
+   186             const data = localStorage.getItem(STORAGE_KEY);
+   187             return data ? JSON.parse(data) : [];
+   188         }
+   189
+   190         // 出欠データを保存
+   191         function saveAttendanceData(data) {
+   192             localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+   193         }
+   194
+   195         // 出欠一覧を表示
+   196         function displayAttendanceList() {
+   197             const attendanceList = document.getElementById('attendanceList');
+   198             const data = getAttendanceData();
+   199
+   200             if (data.length === 0) {
+   201                 attendanceList.innerHTML = `
+   202                     <p class="text-center text-gray-500 py-8">
+   203                         <i class="fas fa-info-circle mr-2"></i>まだ回答がありません
+   204                     </p>
+   205                 `;
+   206                 return;
+   207             }
+   208
+   209             const html = data.map(item => {
+   210                 const statusIcon = item.attendance === '参加' ? 'fas fa-check text-green-600' :
+   211                                   item.attendance === '不参加' ? 'fas fa-times text-red-600' :
+   212                                   'fas fa-question text-yellow-600';
+   213
+   214                 return `
+   215                     <div class="attendance-card glass p-4 rounded-lg">
+   216                         <div class="flex items-center justify-between mb-2">
+   217                             <h4 class="font-bold text-lg text-gray-800">
+   218                                 <i class="fas fa-user mr-2"></i>${item.name}
+   219                             </h4>
+   220                             <span class="font-semibold">
+   221                                 <i class="${statusIcon} mr-1"></i>${item.attendance}
+   222                             </span>
+   223                         </div>
+   224                         ${item.comment ? `<p class="text-gray-600 text-sm"><i class="fas fa-comment mr-2"></i>${item.comment}</p>` : ''}
+   225                         <p class="text-xs text-gray-400 mt-2">
+   226                             <i class="fas fa-clock mr-1"></i>${item.timestamp}
+   227                         </p>
+   228                     </div>
+   229                 `;
+   230             }).join('');
+   231
+   232             attendanceList.innerHTML = html;
+   233         }
+   234
+   235         // フォーム送信処理
+   236         document.getElementById('attendanceForm').addEventListener('submit', function(e) {
+   237             e.preventDefault();
+   238
+   239             const name = document.getElementById('name').value.trim();
+   240             const attendance = document.querySelector('input[name="attendance"]:checked').value;
+   241             const comment = document.getElementById('comment').value.trim();
+   242
+   243             if (!name) {
+   244                 alert('お名前を入力してください。');
+   245                 return;
+   246             }
+   247
+   248             const data = getAttendanceData();
+   249
+   250             // 同じ名前の回答があるかチェック
+   251             const existingIndex = data.findIndex(item => item.name === name);
+   252
+   253             const newEntry = {
+   254                 name: name,
+   255                 attendance: attendance,
+   256                 comment: comment,
+   257                 timestamp: new Date().toLocaleString('ja-JP')
+   258             };
+   259
+   260             if (existingIndex !== -1) {
+   261                 // 既存の回答を更新
+   262                 data[existingIndex] = newEntry;
+   263                 alert('回答を更新しました！');
+   264             } else {
+   265                 // 新しい回答を追加
+   266                 data.push(newEntry);
+   267                 alert('回答を送信しました！');
+   268             }
+   269
+   270             saveAttendanceData(data);
+   271             displayAttendanceList();
+   272             this.reset();
+   273         });
+   274
+   275         // ページ読み込み時に出欠一覧を表示
+   276         document.addEventListener('DOMContentLoaded', function() {
+   277             displayAttendanceList();
+   278         });
+   279     </script>
+   280 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity=
+       "sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon=
+       '{"rayId":"961383742f06d41e","serverTiming":{"name":{"cfExtPri":true,"cfEdge":true,"cfOrigin":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}},"version":"2025.7.0","
+       token":"4edd5f8ec12a48cfa682ab8261b80a79"}' crossorigin="anonymous"></script>
+   281 </body>
+   282 </html>
+   283     <script id="html_badge_script1">
+   284         window.__genspark_remove_badge_link = "https://www.genspark.ai/api/html_badge/" +\n
+       "remove_badge?token=To%2FBnjzloZ3UfQdcSaYfDnXrifhYkoybhZiCP09Qhptgny%2BYV3mjEEMStXtDf5rZOQbY81o3cjovI7wzjdCIoa4xzHl%2Bx4Y%2FCSOCwoNHFLvQMI%2FhCcG8t876aDADuuKig8%2BWCpTZl80Kplnl
+       gk65R7BfPRMhlH1Fpod8silG2bGJ9QWHvRig1vHSUG9nBw78W9ADX2ITJzEwUW2PghAUrUXdHDhb22hlRIMBFKtFgJAt5xSgUQuTksfuGMUYv9lMbuyNfu1Q1U2iMLIqR1w70qazJb0MC%2FrjhXrqXmeezN5KmaDiN6Zde0dOF58d9a
+       7Ykm5UG1ZErSOBN0kkOG98y%2B6B5313mRWQU0xtHqNuJVPY%2BQ2CePQ%2FyBgUPL5YkXJe02W9GOEsr1ARB5HO3mibdIQHp8rgcOwrlLVgY3SW5hietaXqXNgUl9K71mtENqYoklz7TDZcS2gDB6RTTnkUcR%2Br61p0iMlp22KmtQ
+       QAZEuxBMvcO4ph3iNAG2Mr5SFdzKvJ8ZF52%2B0gb4UiUQUkiQ%3D%3D";
+   285         window.__genspark_locale = "ja-JP";
+   286         window.__genspark_token =
+       "To/BnjzloZ3UfQdcSaYfDnXrifhYkoybhZiCP09Qhptgny+YV3mjEEMStXtDf5rZOQbY81o3cjovI7wzjdCIoa4xzHl+x4Y/CSOCwoNHFLvQMI/hCcG8t876aDADuuKig8+WCpTZl80Kplnlgk65R7BfPRMhlH1Fpod8silG2bGJ9QW
+       HvRig1vHSUG9nBw78W9ADX2ITJzEwUW2PghAUrUXdHDhb22hlRIMBFKtFgJAt5xSgUQuTksfuGMUYv9lMbuyNfu1Q1U2iMLIqR1w70qazJb0MC/rjhXrqXmeezN5KmaDiN6Zde0dOF58d9a7Ykm5UG1ZErSOBN0kkOG98y+6B5313mRW
+       QU0xtHqNuJVPY+Q2CePQ/yBgUPL5YkXJe02W9GOEsr1ARB5HO3mibdIQHp8rgcOwrlLVgY3SW5hietaXqXNgUl9K71mtENqYoklz7TDZcS2gDB6RTTnkUcR+r61p0iMlp22KmtQQAZEuxBMvcO4ph3iNAG2Mr5SFdzKvJ8ZF52+0gb4U
+       iUQUkiQ==";
+   287     </script>
+   288
+   289     <script id="html_notice_dialog_script" src="https://www.genspark.ai/notice_dialog.js"></script>
+   290
